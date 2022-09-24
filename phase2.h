@@ -1,20 +1,25 @@
-typedef struct list_node Node;
-struct list_node {
-  char* data;
+#ifndef __PHASE2_H__
+#define __PHASE2_H__
+
+struct ListNode
+{
+  int val;
+  struct ListNode *next;
+};
+
+struct List
+{
   int len;
-  int sum;
-  Node* next;
+  struct ListNode *head;
 };
 
-typedef struct stack_header stack;
-struct stack_header {
-  Node* top;
-  Node* floor;
-};
+struct List *List_alloc();
+void List_free(struct List *l);
 
-stack* stack_new();
-void push(stack* S, char* x, int sum);
-char* pop(stack* S);
-void stack_print(stack* S);
-int calc_avg(stack* S);
+void List_push_back(struct List *l, int x);
+int List_pop_front(struct List *l);
 
+void List_print(struct List *l);
+int List_calc_avg(struct List *l);
+
+#endif

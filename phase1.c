@@ -5,7 +5,6 @@
 
 #define LENGTH 18
 
-typedef struct word_struct word_t;
 struct word_struct
 {
     char *str;
@@ -18,7 +17,7 @@ bool isAlpha(char ltr)
     return soln;
 }
 
-void toggleCase(word_t *msg)
+void toggleCase(struct word_struct *msg)
 {
     char ltr;
     int i;
@@ -36,7 +35,7 @@ void toggleCase(word_t *msg)
     }
 }
 
-void reverse(word_t *msg)
+void reverse(struct word_struct *msg)
 {
     int i;
     char *buf = (char *)calloc(LENGTH, sizeof(char));
@@ -49,7 +48,7 @@ void reverse(word_t *msg)
     strncpy(msg->str, buf, LENGTH);
 }
 
-void unscramble(word_t *msg)
+void unscramble(struct word_struct *msg)
 {
     char ltr;
     char chng = 13;
@@ -74,10 +73,10 @@ void unscramble(word_t *msg)
 
 int main()
 {
-    word_t *secret_msg = (word_t *)calloc(1, sizeof(word_t));
+    struct word_struct *secret_msg = (struct word_struct *)calloc(1, sizeof(struct word_struct));
     secret_msg->str = (char *)calloc(LENGTH, sizeof(char));
-    strncpy(secret_msg->str, "!312 Av XPHy QBBt", LENGTH);
-    ;
+    strncpy(secret_msg->str, "!522 Av XPHy QBBt", LENGTH);
+
     secret_msg->len = LENGTH;
 
     unscramble(secret_msg);
