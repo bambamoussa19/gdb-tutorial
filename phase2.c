@@ -8,18 +8,18 @@
 
 struct List *List_alloc()
 {
-  struct List *l = calloc(1, sizeof(struct List));
+  struct List *L = calloc(1, sizeof(struct List));
 
-  l->head = NULL;
+  L->head = NULL;
 
-  return l;
+  return L;
 }
 
-void List_free(struct List *l)
+void List_free(struct List *L)
 {
   struct ListNode *n, *temp;
 
-  n = l->head;
+  n = L->head;
   while (n != NULL)
   {
     temp = n->next;
@@ -29,20 +29,20 @@ void List_free(struct List *l)
 }
 
 /* Add element to end of list */
-void List_push_back(struct List *l, int x)
+void List_push_back(struct List *L, int x)
 {
   struct ListNode *temp;
   struct ListNode *n = calloc(1, sizeof(struct ListNode));
   n->val = x;
   n->next = NULL;
 
-  if (l->head == NULL)
+  if (L->head == NULL)
   {
-    l->head = n;
+    L->head = n;
     return;
   }
 
-  temp = l->head;
+  temp = L->head;
   while (temp->next != NULL)
   {
     temp = temp->next;
@@ -51,31 +51,31 @@ void List_push_back(struct List *l, int x)
 }
 
 /* Remove/pop element from front of list */
-int List_pop_front(struct List *l)
+int List_pop_front(struct List *L)
 {
   int v;
   struct ListNode *head;
 
-  if (l->head == NULL)
+  if (L->head == NULL)
   {
     return 0;
   }
 
-  head = l->head;
+  head = L->head;
   v = head->val;
 
-  l->head = head->next;
+  L->head = head->next;
 
   return v;
 }
 
-void List_print(struct List *l)
+void List_print(struct List *L)
 {
   struct ListNode *n;
   int i = 0;
 
   printf("LIST START:\n");
-  for (n = l->head; n != NULL; n = n->next)
+  for (n = L->head; n != NULL; n = n->next)
   {
     printf("[%d] = %d\n", i, n->val);
     i++;
@@ -83,17 +83,17 @@ void List_print(struct List *l)
   printf("LIST END\n");
 }
 
-int List_calc_avg(struct List *l)
+int List_calc_avg(struct List *L)
 {
   struct ListNode *n;
 
   int total_sum = 0;
-  for (n = l->head; n != NULL; n = n->next)
+  for (n = L->head; n != NULL; n = n->next)
   {
     total_sum += n->val;
   }
 
-  return total_sum / l->len;
+  return total_sum / L->len;
 }
 
 int main(void)
